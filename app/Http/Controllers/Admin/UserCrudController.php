@@ -128,7 +128,10 @@ class UserCrudController extends CrudController
             'name'=>'phone',
             'label' => 'Numéro de téléphone'
         ]);
-        CRUD::field('city_id');
+        CRUD::addField([
+            'name'=>'city',
+            'label' => 'Ville'
+        ]);
         CRUD::addField([
             'name'=>'address',
             'label' => 'Addresse'
@@ -204,7 +207,6 @@ class UserCrudController extends CrudController
         
         $user->create([
             'parent_id' => $request['parent_id'],
-            'city_id' => $request['city_id'],
             'pack_id' => $request['pack_id'],
             'reference'                             => $request['firstname']."_".$request['lastname'].random_int(0 , 500),
             'cin'                                   => $request['cin'] ,
@@ -212,6 +214,7 @@ class UserCrudController extends CrudController
             'lastname'                             => $request['lastname'],
             backpack_authentication_column()   => $request[backpack_authentication_column()],
             'phone'                             => $request['phone'], 
+            'city'                            => $request['city'],
             'address'                        => $request['address'],
             'gender'                        => $request['gender'],
             'bank'                           => $request['bank'],

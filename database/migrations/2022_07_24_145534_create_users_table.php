@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
-            $table->unsignedBigInteger('city_id')->nullable()->default(null);
             $table->unsignedBigInteger('pack_id')->nullable()->default(null);
             $table->string('reference', 50)->unique();
             $table->string('cin', 10)->nullable()->unique();
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->string('lastname', 30);
             $table->string('email', 50)->unique();
             $table->string('phone', 20)->nullable();
+            $table->string('city', 50)->nullable();
             $table->string('address', 50)->nullable();
             $table->set('gender', ['Male', 'Female'])->nullable();
             $table->string('bank', 50)->nullable();
@@ -39,7 +39,6 @@ return new class extends Migration
 
             //foreign Keys
             $table->foreign('parent_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null'); 
-            $table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade')->onDelete('set null'); 
             $table->foreign('pack_id')->references('id')->on('packs')->onUpdate('cascade')->onDelete('set null'); 
         });
     }

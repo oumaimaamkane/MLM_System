@@ -29,7 +29,7 @@ class User extends Authenticatable
         'firstname',
         'lastname', 
         'phone', 
-        'city_id', 
+        'city', 
         'address', 
         'bank', 
         'rib', 
@@ -59,10 +59,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function city()
-    {
-        return $this->belongsTo(City::class, 'city_id');
-    }
     public function childrens() {
         return $this->hasMany(User::class, 'parent_id');
     }
