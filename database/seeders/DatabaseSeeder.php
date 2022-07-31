@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(PackSeeder::class);
+        $this->call(LevelSeeder::class);
     }
 }

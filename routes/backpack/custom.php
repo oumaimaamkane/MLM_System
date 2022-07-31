@@ -18,4 +18,8 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('pack', 'PackCrudController');
     Route::crud('user', 'UserCrudController');
+    Route::get('network', 'NetworkController@index');
+
+    Route::crud('level', 'LevelCrudController');
+    Route::crud('network', 'NetworkCrudController');
 }); // this should be the absolute last line of this file
