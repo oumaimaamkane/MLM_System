@@ -207,12 +207,28 @@ class UserCrudController extends CrudController
         $user_model_fqn = config('backpack.base.user_model_fqn');
         $user = new $user_model_fqn();
         $children=User::where('parent_id' , backpack_user()->id)->get();
-        if( count($children) <5){
-            return "he doesn't reach 5 numbers";
+        if( count($children)<5){
+            $user->create([
+                'parent_id' => backpack_user()->id,
+                'pack_id' => $request['pack_id'],
+                'reference'                             => $request['firstname']."_".$request['lastname'].random_int(0 , 500),
+                'cin'                                   => $request['cin'] ,
+                'firstname'                             => $request['firstname'],
+                'lastname'                             => $request['lastname'],
+                backpack_authentication_column()   => $request[backpack_authentication_column()],
+                'phone'                             => $request['phone'], 
+                'city'                            => $request['city'],
+                'address'                        => $request['address'],
+                'gender'                        => $request['gender'],
+                'bank'                           => $request['bank'],
+                'rib'                            => $request['rib'],
+            ]);
+            
+            return redirect()->back();
         }else if(count($children)==5){
             foreach($children as $child){
                 $grand_child = User::where('parent_id' , $child->id)->get();
-                if(count($grand_child) <5){
+                if(count($grand_child)<5){
                     $user->create([
                         'parent_id' => $child->id,
                         'pack_id' => $request['pack_id'],

@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(PackSeeder::class);
         $this->call(LevelSeeder::class);
+        $this->call(UpgradeSeeder::class);
     }
 }

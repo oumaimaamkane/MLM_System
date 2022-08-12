@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 // --------------------------
 // Custom Backpack Routes
 // --------------------------
@@ -19,7 +18,10 @@ Route::group([
     Route::crud('pack', 'PackCrudController');
     Route::crud('user', 'UserCrudController');
     Route::get('network', 'NetworkController@index');
-
     Route::crud('level', 'LevelCrudController');
     Route::crud('network', 'NetworkCrudController');
+    Route::crud('upgrade', 'UpgradeCrudController');
+    Route::get('upgrade-participants' , 'UpgradeCrudController@participantsList');
+    Route::get('/upgrade-participants/{id}/paye' , 'UpgradeCrudController@paye');
 }); // this should be the absolute last line of this file
+Route::get('/email' , [MailController::class , 'sendMail']);

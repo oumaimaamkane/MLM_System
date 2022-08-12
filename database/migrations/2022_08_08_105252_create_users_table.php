@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->unsignedBigInteger('pack_id')->nullable()->default(null);
+            $table->unsignedBigInteger('upgrade_id')->nullable()->default(null);
+            $table->unsignedBigInteger('level_id')->nullable()->default(null);
             $table->string('reference', 50)->unique();
             $table->string('cin', 10)->nullable()->unique();
             $table->string('firstname', 30);
@@ -30,9 +32,8 @@ return new class extends Migration
             $table->string('rib', 50)->nullable();
             $table->string('avatar', 160)->nullable();
             $table->string('password')->nullable();
-            $table->set('status', ['Active', 'Disactive'])->default('Disactive');
+            $table->set('status', ['Active', 'Desactive'])->default('Desactive');
             $table->set('is_admin', ['1', '0'])->default('0');
-            $table->unsignedBigInteger('level_id')->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
@@ -42,6 +43,7 @@ return new class extends Migration
             $table->foreign('parent_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null'); 
             $table->foreign('pack_id')->references('id')->on('packs')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('level_id')->references('id')->on('levels')->onUpdate('cascade')->onDelete('set null'); 
+            $table->foreign('upgrade_id')->references('id')->on('upgrades')->onUpdate('cascade')->onDelete('set null'); 
         });
     }
 
