@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\NetworkRequest;
+use App\Http\Requests\InactivateUserRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Alert;
 /**
- * Class NetworkCrudController
+ * Class InactivateUserCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class NetworkCrudController extends CrudController
+class InactivateUserCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -25,45 +25,13 @@ class NetworkCrudController extends CrudController
      * 
      * @return void
      */
-    public function index()
-    {
-        $parent = User::where('id' , backpack_user()->id)->first();
-        $children = User::where('parent_id' , backpack_user()->id)->where('pack_id' , backpack_user()->pack_id)->get();
-        if(count($children)>0){
-            foreach($children as $kid){
-                $grand_children = User::where('parent_id' , $kid->id)->get();
-                return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
-            }
-        }else{
-            $children = null;
-            $grand_children = null;
-            return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
-        }
-        
-        // return $grand_children ;
-        
-        // return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
-    }
-    public function show($id){
-        $parent = User::where('id' , $id)->first();
-        $children = User::where('parent_id' , $id)->where('pack_id' , backpack_user()->pack_id)->get();
-        if(count($children)>0){
-            foreach($children as $kid){
-                $grand_children = User::where('parent_id' , $kid->id)->where('pack_id' , backpack_user()->pack_id)->get();
-                return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
-
-            }
-        }else{
-            return view('vendor.backpack.base.network',compact('parent' , 'children' ));
-        }
-        
-    }
-
     public function setup()
     {
-        CRUD::setModel(\App\Models\Network::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/network');
-        CRUD::setEntityNameStrings('network', 'networks');
+        CRUD::setModel(\App\Models\InactivateUser::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/inactivate-user');
+        CRUD::setEntityNameStrings('inactivate user', 'inactivate users');
+        CRUD::setTitle('Participants Désactivées');
+        CRUD::setHeading('Participants Désactivées');
     }
 
     /**
@@ -74,7 +42,22 @@ class NetworkCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        
+        $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id);
+        $this->crud->addClause('where' , 'status' , '=', 'Desactive');
+        CRUD::column('reference');
+        CRUD::column('cin');
+        CRUD::addColumn(['name'=>'firstname',
+                'label' => 'Prénom']);
+        CRUD::addColumn(['name'=>'lastname',
+                    'label' => 'Nom']);
+        CRUD::addColumn(['name'=>'phone',
+                    'label' => 'Numéro de télephone']);
+        CRUD::addColumn(['name'=>'pack_id',
+        'label' => 'Pack']);
+        CRUD::column('status');
+        $this->crud->removeButtons(['delete', 'show' , 'update'], 'line');
+        $this->crud->removeButtonFromStack('create', 'top');
+        $this->crud->addButtonFromView('line' , 'activate' , 'activate' , 'beginning' );
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -91,7 +74,7 @@ class NetworkCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(NetworkRequest::class);
+        CRUD::setValidation(InactivateUserRequest::class);
 
         
 
@@ -111,5 +94,15 @@ class NetworkCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    
+    public function activate($id){
+        $user = User::where('id' , '=' ,$id)->update(['status' => 'Active']);
+        if($user){
+         Alert::success(trans('backpack::base.account_activated'))->flash();
+        }else {            
+        Alert::error(trans('backpack::base.error_saving'))->flash();
+        }
+        return redirect()->back();
     }
 }

@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Alert;
 /**
  * Class UserCrudController
  * @package App\Http\Controllers\Admin
@@ -19,6 +20,7 @@ class UserCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \App\Http\Controllers\Admin\Operations\ActivateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -30,6 +32,8 @@ class UserCrudController extends CrudController
         CRUD::setModel(\App\Models\User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
         CRUD::setEntityNameStrings('user', 'users');
+        CRUD::setTitle('Participants Activées');
+        CRUD::setHeading('Participants Activées');
     }
     
    
@@ -42,8 +46,8 @@ class UserCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id);
+        $this->crud->addClause('where' , 'status' , '=', 'Active');
         CRUD::column('reference');
-        CRUD::column('parent_id');
         CRUD::column('cin');
         CRUD::addColumn(['name'=>'firstname',
                 'label' => 'Prénom']);
@@ -54,14 +58,9 @@ class UserCrudController extends CrudController
         CRUD::addColumn(['name'=>'pack_id',
         'label' => 'Pack']);
         CRUD::column('status');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
+    
     /**
      * Define what happens when the Create operation is loaded.
      * 
@@ -269,4 +268,6 @@ class UserCrudController extends CrudController
         // return redirect()->back();
         // // return $request;
     }
+
+    
 }

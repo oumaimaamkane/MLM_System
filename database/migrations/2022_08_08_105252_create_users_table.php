@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('upgrade_id')->nullable()->default(null);
             $table->unsignedBigInteger('level_id')->nullable()->default(null);
             $table->string('reference', 50)->unique();
-            $table->string('cin', 10)->nullable()->unique();
+            $table->string('cin', 10)->nullable();
             $table->string('firstname', 30);
             $table->string('lastname', 30);
             $table->string('email', 50)->unique();

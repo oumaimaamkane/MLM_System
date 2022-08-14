@@ -17,11 +17,13 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('pack', 'PackCrudController');
     Route::crud('user', 'UserCrudController');
+    // Route::get('user/non-activated', 'UserCrudController@nonActivated');
     Route::get('network', 'NetworkController@index');
     Route::crud('level', 'LevelCrudController');
     Route::crud('network', 'NetworkCrudController');
     Route::crud('upgrade', 'UpgradeCrudController');
     Route::get('upgrade-participants' , 'UpgradeCrudController@participantsList');
     Route::get('/upgrade-participants/{id}/paye' , 'UpgradeCrudController@paye');
+    Route::crud('inactivate-user', 'InactivateUserCrudController');
+    Route::get('inactivate-user/{id}/activate', 'InactivateUserCrudController@activate');
 }); // this should be the absolute last line of this file
-Route::get('/email' , [MailController::class , 'sendMail']);
