@@ -57,8 +57,8 @@
                   <a class="page-scroll" href="#contact">Contact</a>
                 </li>
                 
-                <li><a class="mt-3 btn rounded primary-btn-reversed" href="#">S'inscrire</a></li>
-                <li><a class="mt-3 btn text-white" href="/admin/">Connexion</a></li>
+                <li><a class="mt-3 btn rounded primary-btn-reversed" href="/admin/register">S'inscrire</a></li>
+                <li><a class="mt-3 btn text-white" href="/admin/login">Connexion</a></li>
               </ul>
               
             </div>
