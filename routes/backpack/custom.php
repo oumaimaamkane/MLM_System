@@ -21,6 +21,8 @@ Route::group([
     Route::get('network', 'NetworkController@index');
     Route::crud('level', 'LevelCrudController');
     Route::crud('network', 'NetworkCrudController');
+    Route::get('network/{nr}', 'NetworkCrudController@pack');
+    Route::get('network/{nr}/{id}' , 'NetworkCrudController@packTreeShow');
     Route::crud('upgrade', 'UpgradeCrudController');
     Route::get('upgrade-participants' , 'UpgradeCrudController@participantsList');
     Route::get('/upgrade-participants/{id}/paye' , 'UpgradeCrudController@paye');

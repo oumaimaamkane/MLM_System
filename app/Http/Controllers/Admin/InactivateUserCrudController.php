@@ -42,7 +42,6 @@ class InactivateUserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id);
         $this->crud->addClause('where' , 'status' , '=', 'Desactive');
         CRUD::column('reference');
         CRUD::column('cin');
@@ -55,7 +54,7 @@ class InactivateUserCrudController extends CrudController
         CRUD::addColumn(['name'=>'pack_id',
         'label' => 'Pack']);
         CRUD::column('status');
-        $this->crud->removeButtons(['delete', 'show' , 'update'], 'line');
+        $this->crud->removeButtons(['delete', 'show' ], 'line');
         $this->crud->removeButtonFromStack('create', 'top');
         $this->crud->addButtonFromView('line' , 'activate' , 'activate' , 'beginning' );
 

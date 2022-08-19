@@ -45,19 +45,35 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id);
-        $this->crud->addClause('where' , 'status' , '=', 'Active');
-        CRUD::column('reference');
-        CRUD::column('cin');
-        CRUD::addColumn(['name'=>'firstname',
-                'label' => 'Prénom']);
-        CRUD::addColumn(['name'=>'lastname',
-                    'label' => 'Nom']);
-        CRUD::addColumn(['name'=>'phone',
-                    'label' => 'Numéro de télephone']);
-        CRUD::addColumn(['name'=>'pack_id',
-        'label' => 'Pack']);
-        CRUD::column('status');
+        if(backpack_user()->is_admin == 0){
+            $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id);
+            $this->crud->addClause('where' , 'status' , '=', 'Active');
+            CRUD::column('reference');
+            CRUD::column('cin');
+            CRUD::addColumn(['name'=>'firstname',
+                    'label' => 'Prénom']);
+            CRUD::addColumn(['name'=>'lastname',
+                        'label' => 'Nom']);
+            CRUD::addColumn(['name'=>'phone',
+                        'label' => 'Numéro de télephone']);
+            CRUD::addColumn(['name'=>'pack_id',
+            'label' => 'Pack']);
+            CRUD::column('status');
+        }else{
+            $this->crud->addClause('where' , 'status' , '=', 'Active');
+            CRUD::column('reference');
+            CRUD::column('cin');
+            CRUD::addColumn(['name'=>'firstname',
+                    'label' => 'Prénom']);
+            CRUD::addColumn(['name'=>'lastname',
+                        'label' => 'Nom']);
+            CRUD::addColumn(['name'=>'phone',
+                        'label' => 'Numéro de télephone']);
+            CRUD::addColumn(['name'=>'pack_id',
+            'label' => 'Pack']);
+            CRUD::column('status');
+        }
+        
     }
 
     
@@ -205,10 +221,10 @@ class UserCrudController extends CrudController
     {
         $user_model_fqn = config('backpack.base.user_model_fqn');
         $user = new $user_model_fqn();
-        $children=User::where('parent_id' , backpack_user()->id)->get();
+        $children=User::where('parent_id' , $request['parent_id'])->get();
         if( count($children)<5){
             $user->create([
-                'parent_id' => backpack_user()->id,
+                'parent_id' => $request['parent_id'],
                 'pack_id' => $request['pack_id'],
                 'reference'                             => $request['firstname']."_".$request['lastname'].random_int(0 , 500),
                 'cin'                                   => $request['cin'] ,

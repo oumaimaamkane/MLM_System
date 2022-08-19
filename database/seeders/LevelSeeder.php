@@ -18,6 +18,12 @@ class LevelSeeder extends Seeder
     {
         $levels = [
             [
+                'name'            => 'Niveau 0',
+                'members'           => '0',
+                'created_at'       => Carbon::now(),
+                'updated_at'       => Carbon::now()
+            ],
+            [
                 'name'            => 'Niveau 1',
                 'members'           => '25',
                 'created_at'       => Carbon::now(),

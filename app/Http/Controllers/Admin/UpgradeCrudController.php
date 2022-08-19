@@ -73,6 +73,7 @@ class UpgradeCrudController extends CrudController
         CRUD::setValidation(UpgradeRequest::class);
         CRUD::addField(['name' => 'name', 'label' => 'Nom' , 'type' => 'text']); 
         CRUD::addField(['name' => 'members', 'label' => 'Members', 'type' => 'number']); 
+        CRUD::addField(['name' => 'amount', 'label' => 'Somme', 'type' => 'number']); 
         CRUD::addField(['name' => 'percentage', 'label' => 'Percentage', 'type' => 'number' , 'attributes' => ['step' => '0.1']]); 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

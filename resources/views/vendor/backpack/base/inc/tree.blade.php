@@ -6,7 +6,11 @@
                     <ul>
                         @if (count($children)>0)
                             @foreach ($children as $kid)
+                            @if (backpack_user()->is_admin == 1)
+                                <li><a href="{{url('admin/network/'.$kid->pack_id.'/'.$kid->id.'')}}"><i class="fa fa-user"></i></i><span>{{$kid->firstname}} <br/> {{$kid->lastname}}</span></a>
+                            @else
                                 <li><a href="{{url('admin/network/'.$kid->id.'/show')}}"><i class="fa fa-user"></i></i><span>{{$kid->firstname}} <br/> {{$kid->lastname}}</span></a>
+                            @endif
                                     {{-- <ul class="mt-2">
                                         @foreach($grand_children as $grand_child)
                                             @if ($grand_child->parent_id == $kid->id)

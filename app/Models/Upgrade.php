@@ -19,7 +19,7 @@ class Upgrade extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['amount' , 'percentage'];
+    protected $fillable = ['amount' , 'percentage' , 'members'];
     // protected $hidden = [];
     // protected $dates = [];
 

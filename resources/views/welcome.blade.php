@@ -744,11 +744,12 @@
   </a>
 
   <!--====== js ======-->
+  
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/glightbox.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/tiny-slider.js"></script>
-
+  
   <script>
 
     //===== close navbar-collapse when a  clicked

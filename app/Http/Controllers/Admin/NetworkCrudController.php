@@ -66,6 +66,33 @@ class NetworkCrudController extends CrudController
         CRUD::setEntityNameStrings('network', 'networks');
     }
 
+    public function pack($nr){
+        $parent = User::where('id' , backpack_user()->id)->first();
+        $children = User::where('parent_id' , backpack_user()->id)->where('pack_id' , $nr)->get();
+        if(count($children)>0){
+            foreach($children as $kid){
+                $grand_children = User::where('parent_id' , $kid->id)->where('pack_id' , $nr)->get();
+                return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
+            }
+        }else{
+            $children = null;
+            $grand_children = null;
+            return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
+        }
+    }
+    public function packTreeShow($nr , $id){
+        $parent = User::where('id' , $id)->first();
+        $children = User::where('parent_id' , $id)->where('pack_id' , $nr)->get();
+        if(count($children)>0){
+            foreach($children as $kid){
+                $grand_children = User::where('parent_id' , $kid->id)->where('pack_id' , $nr)->get();
+                return view('vendor.backpack.base.network',compact('parent' , 'children' ,'grand_children'));
+
+            }
+        }else{
+            return view('vendor.backpack.base.network',compact('parent' , 'children' ));
+        }
+    }
     /**
      * Define what happens when the List operation is loaded.
      * 
