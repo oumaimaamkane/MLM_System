@@ -1,0 +1,46 @@
+// create a bundle CSS file for the an alternative Backstrap style (blue instead of purple for primary color)
+
+@import "node_modules/@digitallyhappy/backstrap/src/scss/_backstrap_colors";
+
+$primary:       $blue !default;
+$secondary:     $gray-300 !default;
+$success:       $green !default;
+$info:          $blue !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-200 !default;
+$dark:          $black !default;
+
+$hover-color: rgba(105, 171, 239, 0.12);
+$border-color: rgba(0, 40, 100, 0.12);
+$muted-bg-color: rgba(0, 0, 0, 0.02);
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "default":    $secondary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "notice":     $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "error":      $danger,
+    "light":      $light,
+    "dark":       $dark
+  ),
+  $theme-colors
+);
+
+@import "node_modules/@digitallyhappy/backstrap/src/scss/_backstrap_miscellaneous";
+
+@import "node_modules/@coreui/coreui/scss/coreui";
+@import "node_modules/@digitallyhappy/backstrap/src/scss/_custom";
+@import "node_modules/@digitallyhappy/backstrap/src/scss/_noty";
+@import "~animate.css/animate.compat.css";
+@import "node_modules/noty/src/noty";
+
+@import "customs/list";
+@import "customs/form";
+@import "customs/crud";

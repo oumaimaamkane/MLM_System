@@ -1,0 +1,27 @@
+.idea/
+vendor/
+node_modules/
+.DS_Store
+.composer.lock
+composer.lock
+.phpunit.result.cache
+
+# forget some files and folders inside the published CSS and JS assets, 
+# since they're not actually used anywhere
+src/public/packages/ckeditor/samples/
+
+# ignore all dependency package.json files, except for the main one (ours)
+src/public/packages/ckeditor/package.json
+src/public/packages/datatables.net/package.json
+src/public/packages/datatables.net-bs4/package.json
+src/public/packages/datatables.net-fixedheader/package.json
+src/public/packages/datatables.net-fixedheader-bs4/package.json
+src/public/packages/datatables.net-responsive/package.json
+src/public/packages/datatables.net-responsive-bs4/package.json
+src/public/packages/jquery-colorbox/package.json
+src/public/packages/jquery-ui-dist/package.json
+src/public/packages/nestedSortable/package.json
+src/public/packages/source-sans-pro/package.json
+src/public/packages/tinymce/package.json
+src/public/packages/tinymce/composer.json
+

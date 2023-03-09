@@ -1,0 +1,11 @@
+// create a bundle CSS file for the default electric purple Backstrap style
+
+@import "node_modules/@digitallyhappy/backstrap/src/scss/style";
+@import "node_modules/@coreui/coreui/scss/coreui";
+@import "node_modules/@digitallyhappy/backstrap/src/scss/_custom";
+@import "~animate.css/animate.compat.css";
+@import "node_modules/noty/src/noty";
+
+@import "customs/list";
+@import "customs/form";
+@import "customs/crud";

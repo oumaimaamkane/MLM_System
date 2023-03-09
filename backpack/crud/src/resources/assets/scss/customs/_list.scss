@@ -1,0 +1,356 @@
+// DataTables
+#crudTable_wrapper {
+  display: block;
+
+  .dataTables_processing {
+    background: rgba(255, 255, 255, 0.9);
+    top: 26px;
+    left: 115px;
+    height: calc(100% - 6px);
+    width: calc(100% - 30px);
+    z-index: 999;
+    border: none;
+    box-shadow: none;
+
+    & > img {
+      top: calc(50% - 16px);
+      left: calc(50% - 16px);
+      position: absolute;
+    }
+  }
+
+  .dataTables_length select {
+    min-width: 3.6rem;
+    margin-right: 0.4rem;
+  }
+
+  #crudTable,
+  table.dataTable {
+    margin-top: 0 !important;
+
+    &.dtr-inline.collapsed > tbody > tr > .dtr-control:before {
+      background-color: transparent;
+      color: #636161;
+      font-family: "Line Awesome Free";
+      font-weight: 900;
+      width: 16px;
+      content: "\f142";
+      font-size: 21px;
+      box-shadow: none;
+      border: none;
+      display: inline;
+      position: relative;
+      top: 0;
+      left: 0;
+      margin: 0 0 0 -0.25rem;
+    }
+
+    &.dtr-inline.collapsed > tbody > tr > .dtr-control:before {
+      top: 0;
+    }
+
+    td,
+    th {
+      outline: none;
+      vertical-align: middle;
+      line-height: 1em;
+    }
+
+    thead > tr {
+      & > th:not(.sorting_disabled),
+      & > td {
+        padding-right: 30px;
+      }
+    }
+
+    .sorting:before,
+    .sorting_asc:before,
+    .sorting_desc:before,
+    .sorting_asc_disabled:before,
+    .sorting_desc_disabled:before {
+      right: 0.4em;
+      top: 1em;
+      content: "\f0d8";
+      font: normal normal normal 14px/1 "Line Awesome Free";
+      font-weight: 900;
+    }
+
+    .sorting:after,
+    .sorting_asc:after,
+    .sorting_desc:after,
+    .sorting_asc_disabled:after,
+    .sorting_desc_disabled:after {
+      right: 0.4em;
+      content: "\f0d7";
+      font: normal normal normal 14px/1 "Line Awesome Free";
+      font-weight: 900;
+    }
+
+    &.has-hidden-columns .details-control {
+      margin-left: 0.25rem;
+    }
+
+    &[data-has-bulk-actions="1"] {
+      &.has-hidden-columns {
+        thead tr th:first-child,
+        tfoot tr th:first-child {
+          padding-left: 1.35rem !important;
+        }
+      }
+
+      &[data-has-details-row="1"] {
+        thead tr th:first-child,
+        tfoot tr th:first-child {
+          padding-left: 1.6rem !important;
+        }
+
+        &.has-hidden-columns {
+          thead tr th:first-child,
+          tfoot tr th:first-child {
+            padding-left: 2.6rem !important;
+          }
+        }
+      }
+    }
+
+    &[data-has-bulk-actions="0"] {
+      &[data-has-details-row="1"],
+      &.has-hidden-columns {
+        thead tr th:first-child,
+        tfoot tr th:first-child {
+          padding-left: 1.8rem !important;
+        }
+      }
+
+      &[data-has-details-row="1"].has-hidden-columns {
+        thead tr th:first-child,
+        tfoot tr th:first-child {
+          padding-left: 3rem !important;
+        }
+      }
+    }
+
+    .details-control {
+      display: flex;
+    }
+
+    .crud_bulk_actions_checkbox {
+      display: flex;
+      margin: 0 0.6rem 0 0.45rem;
+    }
+
+    .crud_bulk_actions_checkbox input {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &:not(.has-hidden-columns) {
+      tr td:first-child {
+        padding-top: 1.25rem !important;
+      }
+    }
+    tr th:first-child,
+    tr td:first-child {
+      display: flex;
+      align-items: center;
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      padding-left: 0.6rem !important;
+    }
+
+    &[data-has-bulk-actions="0"] .details-control,
+    &[data-has-bulk-actions="0"][data-has-details-row="0"] .dtr-control:before {
+        margin-right: 0.4rem !important;
+    }
+
+    &[data-responsive-table="0"] thead tr th,
+    tr td.dataTables_empty,
+    tr.dt-hasChild + tr td {
+      display: table-cell;
+    }
+  }
+
+  .dataTables_scrollBody {
+    #crudTable[data-responsive-table="0"] {
+      tr th:first-child {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+
+  .dt-buttons .dt-button-collection,
+  tr td .btn-group .dropdown-menu {
+    max-height: 340px;
+    overflow-y: auto;
+  }
+
+  .dt-buttons .dt-button-collection {
+    padding: 0;
+    border: 0;
+  }
+}
+
+// Filters
+.navbar-filters {
+  min-height: 25px;
+  border-radius: 0;
+  margin-bottom: 6px;
+  margin-top: 0;
+  background: transparent;
+  border-color: #f4f4f4;
+  border: none;
+
+  .navbar-collapse {
+    padding: 0;
+    border: 0;
+  }
+
+  .navbar-toggle {
+    padding: 10px 15px;
+    border-radius: 0;
+  }
+
+  .navbar-brand {
+    height: 25px;
+    padding: 5px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  li {
+    margin: 0 2px;
+
+    & > a {
+      border-radius: 2px;
+    }
+  }
+
+  li > a:active,
+  .navbar-nav > .active > a,
+  .navbar-nav > .active > a:focus,
+  .navbar-nav > .active > a:hover,
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:focus,
+  .navbar-nav > .open > a:hover {
+    background-color: #e4e7ea;
+    border-radius: 3px;
+  }
+
+  .nav.navbar-nav {
+    float: none;
+  }
+
+  .backpack-filter label {
+    color: #868686;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-filters .navbar-nav > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-filters .navbar-nav {
+    margin: 0;
+  }
+}
+
+.dataTables_filter {
+  text-align: right;
+
+  label {
+    font-weight: normal;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  input {
+    display: inline-block;
+    width: auto;
+    border-radius: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dataTables_filter {
+    label {
+      width: 100%;
+    }
+
+    input[type="search"] {
+      width: 100%;
+    }
+  }
+}
+
+// Pagination
+.pagination {
+  & > .disabled {
+    & > a,
+    & > a:focus,
+    & > a:hover,
+    & > span,
+    & > span:focus,
+    & > span:hover {
+      background: transparent;
+    }
+  }
+
+  & > li {
+    & > a {
+      background: transparent;
+      border: none;
+      border-radius: 5px;
+      color: #333;
+    }
+
+    & > a:focus,
+    & > a:hover,
+    & > span:focus,
+    & > span:hover {
+      background: white;
+    }
+  }
+
+  & > li:last-child > a,
+  & > li:last-child > span,
+  & > li:first-child > a,
+  & > li:first-child > span {
+    border-radius: 5px;
+  }
+}
+
+// Removes the horizontal scroll (if the width allows it)
+.box-body.table-responsive {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.dt-buttons,
+.modal .details-control {
+  display: none;
+}
+
+.dtr-bs-modal {
+  .modal-body {
+    padding: 0;
+  }
+  .crud_bulk_actions_checkbox {
+    display: none;
+  }
+}
+
+.content-wrapper {
+  min-height: calc(100% - 98px);
+}
+
+// Allow dropdown buttons to push the height/width of the rapper so that they're entirely visible
+.fixed .wrapper {
+  overflow: visible;
+}

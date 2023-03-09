@@ -1,0 +1,11 @@
+.sidebar .nav-dropdown-items .nav-dropdown {
+    padding: 0 0 0 .8rem;
+
+    &:not(.open) > a {
+        font-weight: normal!important;
+    }
+}
+
+[dir="rtl"] .sidebar .nav-dropdown-items .nav-dropdown {
+    padding: 0 .8rem 0 0;
+}

@@ -1,0 +1,46 @@
+# Configuration for support-requests - https://github.com/dessant/support-requests
+
+name: 'Support Requests'
+
+on:
+  issues:
+    types: [labeled, unlabeled, reopened]
+
+permissions:
+  issues: write
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/support-requests@v2
+        with:
+          github-token: ${{ github.token }}
+          support-label: 'Ask-It-On-Stack-Overflow'
+          issue-comment: >
+            :wave: @{issue-author}, we use the issue tracker exclusively
+            for bug reports and feature requests. However, this issue appears
+            to be a support request. **Could you please [repost on StackOverflow](https://stackoverflow.com/questions/tagged/backpack-for-laravel), using the ```backpack-for-laravel``` tag**?
+            
+            
+            Here are all the Backpack communication mediums:
+            
+            - Long questions (_I have done X and Y and it won't do Z wtf_): [Stackoverflow](https://stackoverflow.com/questions/tagged/backpack-for-laravel), using the ```backpack-for-laravel``` tag; this is recommended for most questions, since other developers can then find the answer on a simple Google search; also, people get points for answering - and who doesn't like StackOverflow points?!
+            - Quick help (_How do I do X_): [Gitter Chatroom](https://gitter.im/BackpackForLaravel/Lobby);
+            - Bug Reports, Feature Requests: Github Issues (here);
+            
+            
+            Thank you for understanding. 
+            
+            
+            --
+            
+            Justin Case
+            
+            The Backpack Robot
+            
+            
+            PS. In case I mistakenly closed your issue, yell :-) I'm a robot, I make mistakes.
+          close-issue: true
+          lock-issue: false
+          issue-lock-reason: 'off-topic'
