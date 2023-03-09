@@ -42,21 +42,39 @@ class InactivateUserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->addClause('where' , 'status' , '=', 'Desactive');
-        CRUD::column('reference');
-        CRUD::column('cin');
-        CRUD::addColumn(['name'=>'firstname',
-                'label' => 'Prénom']);
-        CRUD::addColumn(['name'=>'lastname',
-                    'label' => 'Nom']);
-        CRUD::addColumn(['name'=>'phone',
-                    'label' => 'Numéro de télephone']);
-        CRUD::addColumn(['name'=>'pack_id',
-        'label' => 'Pack']);
-        CRUD::column('status');
-        $this->crud->removeButtons(['delete', 'show' ], 'line');
-        $this->crud->removeButtonFromStack('create', 'top');
-        $this->crud->addButtonFromView('line' , 'activate' , 'activate' , 'beginning' );
+        if(backpack_user()->is_admin == 1){
+            $this->crud->addClause('where' , 'status' , '=', 'Desactive');
+            CRUD::column('reference');
+            CRUD::addColumn(['name'=>'firstname',
+                    'label' => 'Prénom']);
+            CRUD::addColumn(['name'=>'lastname',
+                        'label' => 'Nom']);
+            CRUD::addColumn(['name'=>'phone',
+                        'label' => 'Numéro de télephone']);
+            CRUD::addColumn(['name'=>'pack_id',
+            'label' => 'Pack']);
+            CRUD::column('status');
+            $this->crud->removeButtons(['delete', 'show' ], 'line');
+            $this->crud->removeButtonFromStack('create', 'top');
+            $this->crud->addButtonFromView('line' , 'activate' , 'activate' , 'beginning' );
+        }else{
+            $this->crud->addClause('where' , 'status' , '=', 'Desactive' );
+            $this->crud->addClause('where' , 'parent_id' , '=', backpack_user()->id );
+            CRUD::column('reference');
+            CRUD::addColumn(['name'=>'firstname',
+                    'label' => 'Prénom']);
+            CRUD::addColumn(['name'=>'lastname',
+                        'label' => 'Nom']);
+            CRUD::addColumn(['name'=>'phone',
+                        'label' => 'Numéro de télephone']);
+            CRUD::addColumn(['name'=>'pack_id',
+            'label' => 'Pack']);
+            CRUD::column('status');
+            $this->crud->removeButtons(['delete', 'show' ], 'line');
+            $this->crud->removeButtonFromStack('create', 'top');
+            $this->crud->addButtonFromView('line' , 'activate' , 'activate' , 'beginning' );
+        }
+        
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

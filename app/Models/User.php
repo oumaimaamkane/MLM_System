@@ -23,7 +23,8 @@ class User extends Authenticatable
     protected $fillable = [
 
         'reference',   
-        'pack_id',     
+        'pack_id',
+        'level_id',     
         'parent_id',
         'cin',
         'firstname',
@@ -38,6 +39,7 @@ class User extends Authenticatable
         'email', 
         'password', 
         'status', 
+        'pass'
     ];
 
     /**
@@ -70,4 +72,5 @@ class User extends Authenticatable
     public function pack()
     {
         return $this->belongsTo(Pack::class , 'pack_id');
-    }}
+    }
+}

@@ -110,7 +110,7 @@ return [
     'developer_name' => 'Oumaima Amkane',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => 'http://www.oumaimaamkane.ma',
+    'developer_link' => '',
 
     // Show powered by Laravel Backpack in the footer? true/false
     'show_powered_by' => false,

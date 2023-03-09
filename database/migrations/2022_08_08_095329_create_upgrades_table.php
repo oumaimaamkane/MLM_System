@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('upgrades', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pack_id')->nullable()->default(null);
             $table->string('name');
             $table->integer('members');
             $table->decimal('amount');
             $table->float('percentage')->nullable();
             $table->timestamps();
+
+            
+            $table->foreign('pack_id')->references('id')->on('packs')->onUpdate('cascade')->onDelete('set null');
+
         });
     }
 

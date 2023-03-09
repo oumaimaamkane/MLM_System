@@ -38,7 +38,10 @@ class Pack extends Model
     {
         return $this->belongsTo(User::class ,'pack_id');
     }
-    
+    public function upgrade()
+    {
+        return $this->belongsTo(upgrade::class ,'pack_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

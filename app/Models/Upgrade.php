@@ -19,7 +19,7 @@ class Upgrade extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['amount' , 'percentage' , 'members'];
+    protected $fillable = ['pack_id' ,'amount' , 'name' ,'percentage' , 'members'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -37,6 +37,10 @@ class Upgrade extends Model
     public function user()
     {
         return $this->belongsTo(User::class ,'upgrade_id');
+    }
+    public function pack()
+    {
+        return $this->belongsTo(Pack::class , 'pack_id');
     }
     /*
     |--------------------------------------------------------------------------

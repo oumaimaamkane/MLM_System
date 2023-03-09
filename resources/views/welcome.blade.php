@@ -16,9 +16,15 @@
   <link rel="stylesheet" href="{{asset("assets/css/lineicons.css")}}" />
   <!--====== Tiny Slider css ======-->
   <link rel="stylesheet" href="{{asset("assets/css/tiny-slider.css")}}" />
+  
   <!--====== gLightBox css ======-->
   <link rel="stylesheet" href="{{asset("assets/css/glightbox.min.css")}}" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .carousel-caption.d-none.d-md-block{
+      background-color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -57,8 +63,8 @@
                   <a class="page-scroll" href="#contact">Contact</a>
                 </li>
                 
-                <li><a class="mt-3 btn rounded primary-btn-reversed" href="/admin/register">S'inscrire</a></li>
-                <li><a class="mt-3 btn text-white" href="/admin/login">Connexion</a></li>
+                <li><a class="mt-3 btn rounded primary-btn-reversed" href="#">S'inscrire</a></li>
+                <li><a class="mt-3 btn text-white" href="#">Connexion</a></li>
               </ul>
               
             </div>
@@ -256,13 +262,15 @@
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-who" role="tabpanel" aria-labelledby="nav-who-tab">
-                  <p>Freedom Beauty est une société créée à Agadir en 17 juine 2022 par Faouzi El Briky, qui fabrique et vend des produits cosmétiques et alimentaires de bonne qualité, par des experts de la nutrition et de l'éstitiques</p>
+                  <p>Freedom Beauty est une société créée à Agadir en 17 juine 2022 par Faouzi El Briky, qui fabrique et vend des produits cosmétiques et alimentaires de bonne qualité, par des experts de la nutrition et de l'éstétiques</p>
                 </div>
                 <div class="tab-pane fade" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
                   <p>Faouzi El Briky est le fondateur et le directeur géneral de Freedom Beauty , aussi il est Coach en développement personnel , a 13 ans d'expérience dans le domaine du MLM </p>
+                  <img src='assets/images/activites/fondateur.jpeg' width="500"/>
                 </div>
               </div>
             </div>
+            <a class="mt-3 btn rounded primary-btn" target="_blank" href="{{__("assets/FREEDOUM BEAUTY-1_220824_004257.pdf")}}">Découvrez plus sur cette Brochure </a>
           </div>
         </div>
       </div>
@@ -402,7 +410,21 @@
     </div>
     <!--======  End Section Title Five ======-->
     <div class="container">
-        <h3 class="text-green text-center">Pas de produits</h3>
+        {{-- <h3 class="text-green text-center">Pas de produits</h3> --}}
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <img class="mb-4" src='assets/images/produits/produit1.jpeg' width="500"/>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <img class="mb-4" src='assets/images/produits/produit2.jpeg' width="500"/>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <img class="mb-4" src='assets/images/produits/produit3.jpeg' width="500"/>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <img src='assets/images/produits/produit4.jpeg' width="500"/>
+          </div>
+        </div>
       {{-- <div class="row">
         <div class="col-lg-4 col-md-6 col-12">
           <div class="pricing-style-fourteen">
@@ -533,8 +555,109 @@
     </div>
     <!--======  End Section Title Five ======-->
     <div class="container">
-        <h3 class="text-green text-center">Pas d'Activités</h3>
+      <h2 class="fw-bold text-center mb-4">Overture de la société </h2>
+      <!-- Carousel wrapper -->
+      <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-mdb-interval="10000">
+            <img src="assets/images/activites/act1.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act2.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act3.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act4.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act5.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act6.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act7.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act8.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act8.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act9.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act10.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act11.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
+          <div class="carousel-item" data-mdb-interval="10000">
+            <img src="assets/images/activites/act12.jpeg" class="d-block w-100" alt="Overture"/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Overture de la société Freedom Beauty</h5>
+            </div>
+          </div>
 
+        </div>
+        <button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Carousel wrapper -->
+
+      <h2 class="fw-bold text-center mt-4 mb-4">Press</h2>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <a href="http://zoomnews.ma/?p=67680" target="_blank">
+            <img src="assets/images/activites/miniature.jpg"/>
+          </a>
+        </div>
+      </div>
       {{-- <div class="row">
         <div class="col-lg-4 col-md-6 col-12">
           <!-- Single News -->
@@ -729,7 +852,7 @@
       <div class="container">
         <div class="inner-content">
             <p class="copyright-text text-center text-white">
-                <span>© 2022</span>tous les droits sont réservés
+                <span>© 2022</span>tous les droits sont réservés Développé par Oumaima Amkane
             </p>
         </div>
       </div>
@@ -744,14 +867,18 @@
   </a>
 
   <!--====== js ======-->
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/glightbox.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/tiny-slider.js"></script>
   
   <script>
-
+  $(document).ready(function(){
+      $('.carousel').carousel({
+        interval: 10000
+      })
+    });    
     //===== close navbar-collapse when a  clicked
     let navbarTogglerNine = document.querySelector(
       ".navbar-nine .navbar-toggler"

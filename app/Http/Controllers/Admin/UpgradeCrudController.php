@@ -6,6 +6,8 @@ use App\Http\Requests\UpgradeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\User;
+use App\Models\Pack;
+use App\Models\UpgradeUser;
 use DB;
 /**
  * Class UpgradeCrudController
@@ -39,12 +41,12 @@ class UpgradeCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-    {
+    {  
+        CRUD::addColumn(['name' => 'pack_id' , 'label' => "Pack"]);
         CRUD::addColumn(['name' => 'name' , 'label' => "Nom"]);
         CRUD::addColumn(['name' => 'members' , 'label' => "Membres"]);
         CRUD::addColumn(['name' => 'amount' , 'label' => "Prix"]);
         CRUD::addColumn(['name' => 'percentage' , 'label' => "Percentage"]);
-
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -53,11 +55,43 @@ class UpgradeCrudController extends CrudController
          */
     }
     protected function participantsList(){
-        return view('vendor.backpack.base.upgrade-participants-list');
+        $direct_users = DB::table('upgrades')->select('users.id','firstName' , 'lastName' , 'users_upgrade.upgrade_id', 'upgrades.amount')
+        ->join('users_upgrade' , 'upgrades.id' , '=' , 'users_upgrade.upgrade_id')
+        ->join('users' , 'users.id' , '=' , 'users_upgrade.user_id')
+        ->where('upgrades.pack_id' ,'=' , backpack_user()->pack_id)
+        ->where('upgrades.name' , '=' , 'Direct')
+        ->where('users_upgrade.status' , '=' , 'Pas encore traité')
+        ->get() ;
+        
+        $up1_users = DB::table('upgrades')->select('users.id','firstName' , 'lastName' , 'users_upgrade.upgrade_id' , 'users_upgrade.members' , 'upgrades.amount')
+        ->join('users_upgrade' , 'upgrades.id' , '=' , 'users_upgrade.upgrade_id')
+        ->join('users' , 'users.id' , '=' , 'users_upgrade.user_id')
+        ->where('upgrades.pack_id' ,'=' , backpack_user()->pack_id)
+        ->where('upgrades.name' , '=' , 'Upgrade1-mini')
+        ->where('users_upgrade.status' , '=' , 'Pas encore traité')
+        ->get() ;
+        $up2_users = DB::table('upgrades')->select('users.id','firstName' , 'lastName' , 'users_upgrade.upgrade_id' , 'users_upgrade.members')
+        ->join('users_upgrade' , 'upgrades.id' , '=' , 'users_upgrade.upgrade_id')
+        ->join('users' , 'users.id' , '=' , 'users_upgrade.user_id')
+        ->where('upgrades.pack_id' ,'=' , backpack_user()->pack_id)
+        ->where('upgrades.name' , '=' , 'Upgrade2-mini')
+        ->where('users_upgrade.status' , '=' , 'Pas encore traité')
+        ->get() ;;
+        $up3_users= DB::table('upgrades')->select('users.id','firstName' , 'lastName' , 'users_upgrade.upgrade_id' , 'users_upgrade.members')
+        ->join('users_upgrade' , 'upgrades.id' , '=' , 'users_upgrade.upgrade_id')
+        ->join('users' , 'users.id' , '=' , 'users_upgrade.user_id')
+        ->where('upgrades.pack_id' ,'=' , backpack_user()->pack_id)
+        ->where('upgrades.name' , '=' , 'Upgrade3-mini')
+        ->where('users_upgrade.status' , '=' , 'Pas encore traité')
+        ->get() ;
+        $pack=Pack::where('id' , backpack_user()->pack_id)->first();
+
+
+        return view('vendor.backpack.base.upgrade-participants-list' , compact('direct_users' , 'up1_users' , 'up2_users' , 'up3_users' , 'pack'));
     }
 
-    public function paye($id){
-        $user = User::where('id' , '=' ,$id)->update(['upgrade_id' => null]);
+    public function paye($upgrade_id , $id){
+        $user = UpgradeUser::where('user_id' , '=' ,$id)->where('upgrade_id' , '=' , $upgrade_id)->update(['status' => 'Traité']);
         return redirect()->back();
     }
 
@@ -71,10 +105,11 @@ class UpgradeCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(UpgradeRequest::class);
+        CRUD::addField(['name' => 'pack_id', 'label' => 'Pack' ]);
         CRUD::addField(['name' => 'name', 'label' => 'Nom' , 'type' => 'text']); 
         CRUD::addField(['name' => 'members', 'label' => 'Members', 'type' => 'number']); 
         CRUD::addField(['name' => 'amount', 'label' => 'Somme', 'type' => 'number']); 
-        CRUD::addField(['name' => 'percentage', 'label' => 'Percentage', 'type' => 'number' , 'attributes' => ['step' => '0.1']]); 
+        CRUD::addField(['name' => 'percentage', 'label' => 'Percentage', 'type' => 'number' , 'attributes' => ['step' => '0.25']]); 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

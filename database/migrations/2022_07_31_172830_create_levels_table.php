@@ -16,6 +16,7 @@ class CreateLevelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name' , 50);
             $table->integer('members');
+            $table->integer('color');
             $table->timestamps();
         });
     }

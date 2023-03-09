@@ -5,21 +5,24 @@
 <li class='nav-item nav-dropdown'><a class='nav-link nav-dropdown-toggle' href='#'><i class='nav-icon la la-money'></i>Upgrades</a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('upgrade') }}'><i class='nav-icon la la-list'></i>List des Upgrades</a></li>  
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('upgrade-participants') }}'><i class='nav-icon la la-users'></i>List des participants </a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('upgrade-participants') }}'><i class='nav-icon la la-money'></i>Paiement des upgrades </a></li>
     </ul>
 </li>
 @endif
 <li class='nav-item nav-dropdown'><a class='nav-link nav-dropdown-toggle' href='#'><i class='nav-icon la la-users'></i>Participants</a>
     <ul class="nav-dropdown-items">
-        <li class="nav-item"><a class="nav-link" href='{{ backpack_url('user') }}'><i class='nav-icon la la-check-circle-o'></i>Participants Activées </a></li>
         @if (backpack_user()->is_admin == 1)
+        <li class="nav-item"><a class="nav-link" href='{{ backpack_url('user') }}'><i class='nav-icon la la-check-circle-o'></i>Participants Activées </a></li>
         <li class="nav-item"><a class="nav-link" href='{{ backpack_url('inactivate-user') }}'><i class='nav-icon la la-times-circle-o'></i>Participants Désactivées </a></li>
+
+        @else
+        <li class="nav-item"><a class="nav-link" href='{{ backpack_url('user/participant-users') }}'><i class='nav-icon la la-check-circle-o'></i>Participants Activées </a></li>
         @endif
     </ul>
 </li>
 
 {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-users'></i> Participant</a></li> --}}
-@if (backpack_user()->is_admin == 1)
+{{-- @if (backpack_user()->is_admin == 1)
 <li class='nav-item nav-dropdown'><a class='nav-link nav-dropdown-toggle' href='#'><i class='nav-icon la la-tree'></i>Réseau</a>
     <ul class="nav-dropdown-items">
         <li class="nav-item"><a class="nav-link" href='{{ backpack_url('network') }}'><i class='nav-icon la la-tree'></i> Réseau 200dh </a></li>
@@ -27,11 +30,12 @@
         <li class="nav-item"><a class="nav-link" href='{{ backpack_url('network/3') }}'><i class='nav-icon la la-tree'></i> Réseau 3000dh </a></li>
     </ul>
 </li>
-@else
+@else --}}
 <li class='nav-item'><a class='nav-link ' href='{{ backpack_url('network') }}'><i class='nav-icon la la-tree'></i>Réseau </a></li>
-@endif
-<li class='nav-item'><a class='nav-link ' href='{{ backpack_url('network') }}'><i class='nav-icon la la-wallet'></i>wallet</a></li>
+{{-- @endif --}}
+<li class='nav-item'><a class='nav-link ' href='{{ backpack_url('wallet') }}'><i class='nav-icon la la-wallet'></i>wallet</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ route('backpack.account.info') }}"><i class="la la-user"></i> {{ trans('backpack::base.my_account') }}</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('logout') }}"><i class="la la-lock"></i> {{ trans('backpack::base.logout') }}</a></li>
+
 
 

@@ -1,15 +1,16 @@
 <div>
     <div class="row">
         <div class="tree">
+            <a class="btn btn-primary text-white cursor-pointer" href="{{url('admin/user-network/'.$parent->id.'/show')}}">Ajouter un utilisateur à ce personne</a>
             <ul>
                 <li> <a href="#"><i class="fa fa-user"></i><span>{{ $parent->firstname}} {{$parent->lastname}}</span></a>
                     <ul>
                         @if (count($children)>0)
                             @foreach ($children as $kid)
                             @if (backpack_user()->is_admin == 1)
-                                <li><a href="{{url('admin/network/'.$kid->pack_id.'/'.$kid->id.'')}}"><i class="fa fa-user"></i></i><span>{{$kid->firstname}} <br/> {{$kid->lastname}}</span></a>
+                                <li><a href="{{url('admin/network/'.$kid->pack_id.'/'.$kid->id.'')}}"><i class="fa fa-user "></i></i><span> {{$kid->reference}}</span></a>
                             @else
-                                <li><a href="{{url('admin/network/'.$kid->id.'/show')}}"><i class="fa fa-user"></i></i><span>{{$kid->firstname}} <br/> {{$kid->lastname}}</span></a>
+                                <li><a href="{{url('admin/network/'.$kid->id.'/show')}}"><i class="fa fa-user"></i></i><span>{{$kid->reference}}</span></a>
                             @endif
                                     {{-- <ul class="mt-2">
                                         @foreach($grand_children as $grand_child)
